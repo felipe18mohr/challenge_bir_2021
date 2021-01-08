@@ -152,10 +152,12 @@ int main() {
           speed[0] = 0.9 * MAX_SPEED;
           speed[1] = -0.9 * MAX_SPEED;
           state = LEFT;
+          printf("New State: LEFT \n");
         } else if (wheel_weight_total[1] > WHEEL_WEIGHT_THRESHOLD) {
           speed[0] = -0.9 * MAX_SPEED;
           speed[1] = 0.9 * MAX_SPEED;
           state = RIGHT;
+          printf("New State: RIGHT \n");
         } else {
           speed[0] = MAX_SPEED;
           speed[1] = MAX_SPEED;
@@ -171,6 +173,7 @@ int main() {
           speed[0] = MAX_SPEED;
           speed[1] = MAX_SPEED;
           state = FORWARD;
+          printf("New State: FORWARD \n");
         }
         break;
       case RIGHT:
@@ -181,12 +184,13 @@ int main() {
           speed[0] = MAX_SPEED;
           speed[1] = MAX_SPEED;
           state = FORWARD;
+          printf("New State: FORWARD \n");
         }
         break;
       case FINISH:
         speed[0] = 0.0;
         speed[1] = 0.0;
-        printf("GOAL REACHED \n");
+        printf("Final State: GOAL REACHED \n");
         break;
     }
 

@@ -6,12 +6,12 @@ Challenge for act as undergraduate intern in the Robotics and Autonomous Systems
 ## The repository
 **Table of Contents**
 - [BIR  Challenge 2021](#bir--challenge-2021)
-  * [The repository](#the-repository)
-  * [The Challenge](#the-challenge)
-    + [Robot](#robot)
-    + [Sensors](#sensors)
-    + [Controller](#controller)
-  * [Results](#results)
+  - [The repository](#the-repository)
+  - [The Challenge](#the-challenge)
+    - [Robot](#robot)
+    - [Sensors](#sensors)
+    - [Controller](#controller)
+  - [Results](#results)
 
 ## The Challenge
 
@@ -24,6 +24,7 @@ For this challenge, the robot mission is to reach a region illuminated by a lamp
 
 ### Controller
 The controller used for this challenge is based on a very simplistic State Machine, wich can be  seen in the diagram below.
+
 ![state_machine](resources/state_machine.png)
 
 It has four states: 
