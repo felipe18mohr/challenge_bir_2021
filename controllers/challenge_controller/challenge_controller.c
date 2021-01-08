@@ -44,6 +44,9 @@
 // minimal distance, in meters, for an obstacle to be considered
 #define MIN_DISTANCE 1.0
 
+// minimal luminosity to consider that the goal has been reached
+#define MIN_LUMINOSITY 800
+
 // minimal weight for the robot to turn
 #define WHEEL_WEIGHT_THRESHOLD 100
 
@@ -138,7 +141,7 @@ int main() {
     }
     
     luminosity = wb_light_sensor_get_value(light_sensor);
-    if (luminosity >= 750) 
+    if (luminosity >= MIN_LUMINOSITY) 
       state = FINISH;
 
     // (very) simplistic state machine to handle the direction of the robot
