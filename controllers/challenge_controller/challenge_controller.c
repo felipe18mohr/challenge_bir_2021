@@ -24,6 +24,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <webots/distance_sensor.h>
+#include <webots/light_sensor.h>
 #include <webots/led.h>
 #include <webots/motor.h>
 #include <webots/robot.h>
@@ -53,7 +54,7 @@ typedef struct {
 } SensorData;
 
 // enum to represent the state of the robot
-typedef enum { FORWARD, LEFT, RIGHT } State;
+typedef enum { FORWARD, LEFT, RIGHT, FINISH } State;
 
 // how much each sensor affects the direction of the robot
 static SensorData sensors[MAX_SENSOR_NUMBER] = {
@@ -78,6 +79,10 @@ int main() {
   red_led[0] = wb_robot_get_device("red led 1");
   red_led[1] = wb_robot_get_device("red led 2");
   red_led[2] = wb_robot_get_device("red led 3");
+  
+  // stores device ID for the light sensor
+  WbDeviceTag light_sensor= wb_robot_get_device("light_sensor");
+  wb_light_sensor_enable(light_sensor, time_step);
 
   char sensor_name[5] = "";
   int i;
@@ -98,7 +103,7 @@ int main() {
   int j, led_number = 0, delay = 0;
   double speed[2] = {0.0, 0.0};
   double wheel_weight_total[2] = {0.0, 0.0};
-  double distance, speed_modifier, sensor_value;
+  double distance, speed_modifier, sensor_value, luminosity;
 
   // by default, the robot goes forward
   State state = FORWARD;
@@ -117,7 +122,7 @@ int main() {
         speed_modifier = 0.0;
       else {
         // computes the actual distance to the obstacle, given the value returned by the sensor
-        distance = 500.0 * (1.0 - (sensor_value / MAX_SENSOR_VALUE));  // lookup table inverse.
+        distance = 5.0 * (1.0 - (sensor_value / MAX_SENSOR_VALUE));  // lookup table inverse.
 
         // if the obstacle is close enough, we may want to turn
         // here we compute how much this sensor will influence the direction of the robot
@@ -131,6 +136,10 @@ int main() {
       for (j = 0; j < 2; ++j)
         wheel_weight_total[j] += sensors[i].wheel_weight[j] * speed_modifier;
     }
+    
+    luminosity = wb_light_sensor_get_value(light_sensor);
+    if (luminosity >= 750) 
+      state = FINISH;
 
     // (very) simplistic state machine to handle the direction of the robot
     switch (state) {
@@ -171,6 +180,11 @@ int main() {
           state = FORWARD;
         }
         break;
+      case FINISH:
+        speed[0] = 0.0;
+        speed[1] = 0.0;
+        printf("GOAL REACHED \n");
+        break;
     }
 
     // the three red LEDs are swicthed on and off periodically
@@ -185,6 +199,9 @@ int main() {
     // sets the motor speeds
     wb_motor_set_velocity(left_wheel, speed[0]);
     wb_motor_set_velocity(right_wheel, speed[1]);
+    
+    if (state == FINISH)
+      break;
   }
 
   wb_robot_cleanup();
