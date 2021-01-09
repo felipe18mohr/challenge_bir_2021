@@ -5,6 +5,8 @@ Challenge for act as undergraduate intern in the Robotics and Autonomous Systems
 
 The purpose of the challenge is to develop an autonomous navigation system, so that the robot reaches an illuminated region, next to a STOP sign, avoiding obstacles. The simulation must be realized in the [Webots](https://cyberbotics.com/) software, and the robot must reach its goal in less then 2 minutos, starting near the START sign.
 
+Challenge repository: https://github.com/Brazilian-Institute-of-Robotics/desafiorobotica
+
 ## The repository
 The folders are organized as follows:
 
