@@ -3,12 +3,12 @@
 
 Challenge for act as undergraduate intern in the Robotics and Autonomous Systems Laboratory, in SENAI CIMATEC, 2021.
 
-The purpose of the challenge is to develop an autonomous navigation system, so that the robot reaches an illuminated region, next to a STOP sign, avoiding obstacles. The simulation must be realized in the [Webots](https://cyberbotics.com/) software, and the robot must reach its goal in less then 2 minutos, starting near the START sign.
+The purpose of the challenge is to develop an autonomous navigation system, so that the robot reaches an illuminated region, next to a STOP sign, avoiding obstacles. The simulation must be realized in the [Webots](https://cyberbotics.com/) software, and the robot must reach its goal in less then 2 minutes, starting near the START sign.
 
 Challenge repository: https://github.com/Brazilian-Institute-of-Robotics/desafiorobotica
 
 ## The repository
-The folders are organized as follows:
+This repository is organized as follow:
 
 - `controllers` - Controller used for the challenge
 - `resources` - Resources used in the README and video of the simulation
@@ -30,7 +30,7 @@ The folders are organized as follows:
 
 The robot used for the challenge was [Pioneer 3-DX](https://www.generationrobots.com/en/402395-robot-mobile-pioneer-3-dx.html). It's a compact differential-drive mobile robot, very reliable and highly customisable.
 
-Webots documentation about this robot can be viewed in [this link](https://cyberbotics.com/doc/guide/pioneer-3dx).
+Webots documentation about this robot can be accessed in [this link](https://cyberbotics.com/doc/guide/pioneer-3dx).
 
 ### Sensors
 The Pioneer 3-DX, used in the challenge, has 16 Distance Sensors attached. They will be used to get information from the environment, so that it is possible to avoid obstacles.
